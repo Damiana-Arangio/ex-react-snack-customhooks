@@ -1,16 +1,103 @@
-# React + Vite
+<p align="center">
+  <img src="public/boolean-logo.png" alt="Boolean logo" width="35">
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1 align="center">EX – Snack Custom Hooks (React)</h1>
 
-Currently, two official plugins are available:
+Esercizio React sviluppato con **Vite**, focalizzato sulla creazione e l’utilizzo di **Custom Hooks** per isolare e riutilizzare logiche di stato ed effetti collaterali.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Il progetto è strutturato seguendo **snack incrementali**, ciascuno dedicato alla realizzazione di un hook personalizzato con uno scopo specifico.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Obiettivo dell’esercizio
 
-## Expanding the ESLint configuration
+- Creare custom hooks riutilizzabili
+- Comprendere come incapsulare logica con `useState` e `useEffect`
+- Gestire effetti persistenti e relative cleanup function
+- Separare logica e interfaccia per migliorare la leggibilità del codice
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Descrizione generale
+
+L’applicazione raccoglie tre snack dedicati alla costruzione di hook personalizzati, ognuno con una responsabilità ben definita.
+
+## 📌 Snack 1: useSwitch() – Toggle Booleano
+
+**Obiettivo:** Creare un custom hook per alternare un valore booleano tra `true` e `false`.
+
+### Requisiti
+
+1. Il valore iniziale deve essere `false`.
+2. L’hook deve restituire:
+   - Il valore corrente
+   - Una funzione `toggle()` per invertirlo
+3. Ogni chiamata a `toggle()` deve alternare:
+   - `true → false`
+   - `false → true`
+
+### Concetti applicati
+
+- `useState`
+- Aggiornamento funzionale dello stato
+- Ritorno di array (pattern simile a `useState`)
+
+---
+
+## 📌 Snack 2: useDate() – Data e Ora in Tempo Reale
+
+**Obiettivo:** Creare un custom hook che restituisca la data e l’ora correnti, aggiornandosi automaticamente ogni secondo.
+
+### Requisiti
+
+1. Restituire un oggetto `Date`.
+2. Aggiornare automaticamente il valore ogni secondo.
+3. Utilizzare `useEffect()` per:
+   - Creare un `setInterval`
+   - Pulire l’intervallo con la cleanup function
+
+### Concetti applicati
+
+- `useState`
+- `useEffect`
+- Effetti persistenti
+- Cleanup function per evitare memory leak
+
+---
+
+## 📌 Snack 3: useCustomPointer() – Cursore Personalizzato
+
+**Obiettivo:** Creare un custom hook che sostituisca il cursore del mouse con un componente personalizzato.
+
+### Requisiti
+
+1. Accettare in input:
+   - Una stringa (es. emoji)
+   - Oppure un JSX component
+2. Posizionare il componente al posto del cursore nativo.
+3. Aggiornare la posizione ad ogni movimento del mouse.
+4. Rimuovere correttamente l’event listener nella cleanup function.
+
+### Concetti applicati
+
+- Event listener su `mousemove`
+- Stato per tracciare coordinate `x` e `y`
+- Effetti collaterali con `useEffect`
+- Separazione tra logica e UI
+
+---
+
+## Struttura del progetto
+
+Ogni snack è organizzato in:
+
+- Un file dedicato all’hook (`useNomeHook.jsx`)
+- Un componente che ne dimostra l’utilizzo
+
+---
+
+## Tecnologie utilizzate
+
+- React
+- Vite
